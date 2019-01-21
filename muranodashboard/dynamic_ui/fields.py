@@ -38,6 +38,7 @@ import six
 from yaql import legacy
 
 from muranodashboard.api import packages as pkg_api
+from muranodashboard.common import designate
 from muranodashboard.common import net
 from muranodashboard.dynamic_ui import helpers
 from muranodashboard.environments import api as env_api
@@ -771,3 +772,24 @@ class DomainChoiceField(make_select_cls('io.murano.windows.ActiveDirectory')):
     def __init__(self, *args, **kwargs):
         super(DomainChoiceField, self).__init__(*args, **kwargs)
         self.choices = [('', _('Not in domain'))]
+
+
+class ZoneChoiceField(ChoiceField):
+    @with_request
+    def update(self, request, form=None, **kwargs):
+        try:
+            zones = designate.zone_list(request)
+        except Exception:
+            zones = []
+            exceptions.handle(request,
+                              _("Unable to retrieve DNS zones."))
+
+        # Use zone name instead of ID purely for convenience of being able to
+        # pass it through to construct fqdn for apps
+        zone_choices = [(z['name'], z['name']) for z in zones]
+        if not zone_choices:
+            zone_choices.insert(0, ('', _('No DNS zones available')))
+
+        zone_choices.sort(key=lambda e: e[1])
+        zone_choices.insert(0, ('', _('No DNS zone')))
+        self.choices = zone_choices
