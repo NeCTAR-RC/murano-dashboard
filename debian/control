@@ -1,0 +1,86 @@
+Source: murano-dashboard
+Section: python
+Priority: extra
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
+Uploaders:
+ Thomas Goirand <zigo@debian.org>,
+Build-Depends:
+ debhelper (>= 10~),
+ dh-python,
+ openstack-pkg-tools,
+ python-all,
+ python-pbr (>= 2.0.0),
+ python-setuptools,
+ python-sphinx (>= 1.6.2),
+Build-Depends-Indep:
+ openstack-dashboard (>= 3:13.0.0~b3~),
+ python-babel (>= 2.3.4),
+ python-beautifulsoup,
+ python-bs4 (>= 4.6.0),
+ python-castellan (>= 0.16.0),
+ python-coverage (>= 4.0),
+ python-django (>= 1.8),
+ python-django-babel (>= 0.5.1),
+ python-django-compressor (>= 2.0),
+ python-django-formtools (>= 1.0),
+ python-django-horizon,
+ python-django-nose (>= 1.4.4),
+ python-hacking (>= 0.12.0),
+ python-heat-dashboard (>= 1.0.0),
+ python-iso8601 (>= 0.1.11),
+ python-mock (>= 2.0.0),
+ python-mox3 (>= 0.20.0),
+ python-muranoclient (>= 0.8.2),
+ python-nose (>= 1.3.7),
+ python-nose-exclude,
+ python-nosehtmloutput (>= 0.0.3),
+ python-openstack.nose-plugin (>= 0.7),
+ python-openstackdocstheme (>= 1.18.1),
+ python-oslo.config (>= 1:5.1.0),
+ python-oslo.log (>= 3.36.0),
+ python-selenium (>= 2.50.1),
+ python-semantic-version (>= 2.3.1),
+ python-six (>= 1.10.0),
+ python-testtools (>= 2.2.0),
+ python-tz (>= 2013.6),
+ python-yaml (>= 3.10),
+ python-yaql (>= 1.1.0),
+Standards-Version: 4.1.2
+Vcs-Browser: https://git.launchpad.net/~ubuntu-server-dev/ubuntu/+source/murano-dashboard
+Vcs-Git: git://git.launchpad.net/~ubuntu-server-dev/ubuntu/+source/murano-dashboard
+Homepage: https://github.com/stackforge/murano-dashboard
+
+Package: python-murano-dashboard
+Architecture: all
+Depends:
+ openstack-dashboard (>= 3:13.0.0~b3~),
+ python-babel (>= 2.3.4),
+ python-beautifulsoup,
+ python-bs4 (>= 4.6.0),
+ python-castellan (>= 0.16.0),
+ python-django (>= 1.8),
+ python-django-babel (>= 0.5.1),
+ python-django-compressor (>= 2.0),
+ python-django-formtools (>= 1.0),
+ python-heat-dashboard (>= 1.0.0),
+ python-iso8601 (>= 0.1.11),
+ python-muranoclient (>= 0.8.2),
+ python-oslo.log (>= 3.36.0),
+ python-pbr (>= 2.0.0),
+ python-semantic-version (>= 2.3.1),
+ python-six (>= 1.10.0),
+ python-tz (>= 2013.6),
+ python-yaml (>= 3.10),
+ python-yaql (>= 1.1.0),
+ ${misc:Depends},
+ ${python:Depends},
+Description: cloud-ready application catalog - dashboard plugin
+ Murano Project introduces an application catalog, which allows application
+ developers and cloud administrators to publish various cloud-ready
+ applications in a browsable categorised catalog, which may be used by the
+ cloud users (including the inexperienced ones) to pick-up the needed
+ applications and services and composes the reliable environments out of them
+ in a "push-the-button" manner.
+ .
+ This package contains the OpenStack dashboard plugin.
