@@ -781,15 +781,16 @@ class ZoneChoiceField(ChoiceField):
             zones = designate.zone_list(request)
         except Exception:
             zones = []
-            exceptions.handle(request,
-                              _("Unable to retrieve DNS zones."))
+            exceptions.handle(request, _("Unable to retrieve DNS zones."))
 
         # Use zone name instead of ID purely for convenience of being able to
         # pass it through to construct fqdn for apps
         zone_choices = [(z['name'], z['name']) for z in zones]
-        if not zone_choices:
+        zone_choices.sort(key=lambda e: e[1])
+
+        if zones:
+            zone_choices.insert(0, ('', _('No DNS zone')))
+        else:
             zone_choices.insert(0, ('', _('No DNS zones available')))
 
-        zone_choices.sort(key=lambda e: e[1])
-        zone_choices.insert(0, ('', _('No DNS zone')))
         self.choices = zone_choices
