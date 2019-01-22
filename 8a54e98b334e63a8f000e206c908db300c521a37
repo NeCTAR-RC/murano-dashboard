@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a2112e2_df13cb62",
+        "filename": "muranodashboard/common/designate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-01-22T07:02:16Z",
+      "side": 1,
+      "message": "I don\u0027t think you should be doing any of this. You should use the methods in openstack_auth under horizon to get the existing session. Just having a look now",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "8a54e98b334e63a8f000e206c908db300c521a37",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    }
+  ]
+}
