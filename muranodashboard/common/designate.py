@@ -16,7 +16,7 @@ from designateclient.v2 import client as designate_client
 
 from horizon.utils.memoized import memoized_with_request
 
-from keystoneauth1 import loading
+from keystoneauth1.identity import v3
 from keystoneauth1 import session
 
 from openstack_dashboard.api import base
@@ -29,6 +29,9 @@ def get_auth_params_from_request(request):
     """
     return (
         request.user.token.id,
+        request.user.tenant_id,
+        request.user.token.project.get('domain_id'),
+        base.url_for(request, 'dns'),
         base.url_for(request, 'identity')
     )
 
@@ -36,12 +39,17 @@ def get_auth_params_from_request(request):
 @memoized_with_request(get_auth_params_from_request)
 def designateclient(request_auth_params):
     (
-        token_id,
+        token,
+        project_id,
+        project_domain_id,
+        designate_url,
         auth_url
     ) = request_auth_params
 
-    loader = loading.get_plugin_loader('token')
-    auth = loader.load_from_options(auth_url=auth_url, token=token_id)
+    auth = v3.Token(auth_url=auth_url,
+                    token=token,
+                    project_id=project_id,
+                    project_domain_id=project_domain_id)
     sess = session.Session(auth=auth)
     d = designate_client.Client(session=sess)
     return d
