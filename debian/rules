@@ -22,8 +22,8 @@ override_dh_auto_install:
 	pkgos-dh_auto_install --no-py2
 
 	# Activates the murano-dashboard plugin in Horizon - Python 3
-	mkdir -p $(CURDIR)/debian/python3-murano-dashboard/usr/lib/python3/dist-packages/openstack_dashboard/local/local_settings.d
-	cp $(CURDIR)/muranodashboard/local/local_settings.d/_50_murano.py $(CURDIR)/debian/python3-murano-dashboard/usr/lib/python3/dist-packages/openstack_dashboard/local/local_settings.d
+	mkdir -p $(CURDIR)/debian/python3-murano-dashboard/usr/lib/python3/dist-packages/openstack_dashboard/enabled ; \
+	cp $(CURDIR)/muranodashboard/local/enabled/_* $(CURDIR)/debian/python3-murano-dashboard/usr/lib/python3/dist-packages/openstack_dashboard/enabled ; \
 
 	dh_install
 	dh_missing --fail-missing
