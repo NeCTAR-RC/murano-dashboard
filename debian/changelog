@@ -1,0 +1,411 @@
+murano-dashboard (1:7.0.0-0ubuntu1~cloud0) bionic-stein; urgency=medium
+
+  * New upstream release for the Ubuntu Cloud Archive.
+
+ -- Openstack Ubuntu Testing Bot <openstack-testing-bot@ubuntu.com>  Fri, 12 Apr 2019 11:28:07 +0000
+
+murano-dashboard (1:7.0.0-0ubuntu1) disco; urgency=medium
+
+  * New upstream release for OpenStack Stein.
+
+ -- James Page <james.page@ubuntu.com>  Fri, 12 Apr 2019 09:35:08 +0100
+
+murano-dashboard (1:7.0.0~rc1-0ubuntu1) disco; urgency=medium
+
+  * d/watch: Scope to 7.x series.
+  * New upstream release candidate for OpenStack Stein.
+  * d/control: Align (Build-)Depends with upstream.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Fri, 22 Mar 2019 10:28:18 -0400
+
+murano-dashboard (1:7.0.0~b1~git2019013120.d123d1ac-0ubuntu1) disco; urgency=medium
+
+  * New upstream snapshot for OpenStack Stein.
+  * d/control: Align (Build-)Depends with upstream.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Thu, 31 Jan 2019 20:52:10 -0500
+
+murano-dashboard (1:7.0.0~b1~git2018112016.18b276ec-0ubuntu2) disco; urgency=medium
+
+  * d/py3dist-overrides: Add django-floppyforms to py3dist-overrides as it
+    does not appear to be used and was dropped from Ubuntu after Xenial.
+    Upstream bug opened: https://bugs.launchpad.net/murano/+bug/1805193.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Mon, 26 Nov 2018 12:53:38 -0500
+
+murano-dashboard (1:7.0.0~b1~git2018112016.18b276ec-0ubuntu1) disco; urgency=medium
+
+  * New upstream snapshot for OpenStack Stein.
+  * d/control,rules,python*: Drop Python 2 support.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Tue, 20 Nov 2018 16:27:53 -0500
+
+murano-dashboard (1:6.0.0-0ubuntu1) cosmic; urgency=medium
+
+  * New upstream release for OpenStack Rocky.
+  * Additional support for Python 3:
+    - d/control: Drop python(3)-murano-dashboard conflicts on each other.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Thu, 30 Aug 2018 15:34:47 -0400
+
+murano-dashboard (1:6.0.0~rc1-0ubuntu1) cosmic; urgency=medium
+
+  * New upstream release candidate for OpenStack Rocky.
+  * d/control: Align (Build-)Depends with upstream.
+  * d/p/use-mox-dep-explicitly.patch, d/p/APIMockTestCase-[1|2].patch:
+    Dropped. Fixed upstream.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Thu, 09 Aug 2018 12:06:46 -0400
+
+murano-dashboard (1:6.0.0~b1-0ubuntu2) cosmic; urgency=medium
+
+  * Merge from Debian unstable.  Remaining changes:
+    - d/control, d/rules: Add Python 2.7 support and python-murano-dashboard
+      package.
+    - d/rules: Add Python 2.7 support.
+    - d/rules: Use pkgos-dh_auto_install instead of python setup.py install.
+    - d/rules: Drop copy of static files to /usr/share/openstack-
+      dashboard/openstack_dashboard/static. Static files are already collected
+      from /usr/lib/python3/dist-packages/designatedashboard/static/.
+    - d/rules: Drop dup cp of dashboards. python-django-horizon uses update-
+      alternatives to point /usr/share/openstack-dashboard/openstack_dashboard
+      at /usr/lib/python*/dist-packages/openstack_dashboard.
+    - d/python3-murano-dashboard.install: Dropped. Not needed.
+    - d/python3-murano-dashboard.postinst, postrm: Added based on Py2 versions.
+    - d/python(3)-murano-dashboard.postinst: Align dir ownership of
+      /var/lib/openstack-dashboard with other dashboard packages. And updated
+      both scripts to ensure proper python binary is used when collecting and
+      compressing static assets.
+    - d/watch: Get tarball from tarballs.openstack.org.
+    - d/gbp.conf: Retain for gbp and pristine-tar config.
+  * d/p/use-mox-dep-explicitly.patch, d/p/APIMockTestCase-[1|2].patch:
+    Cherry-picked patches from upstream master to fix mox issues.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 11 Jul 2018 13:45:05 -0400
+
+murano-dashboard (1:6.0.0~b1-0ubuntu1) cosmic; urgency=medium
+
+  * d/watch: Scope to 6.x series.
+  * New upstream milestone for OpenStack Rocky.
+  * d/control: Align (Build-)Depends with upstream.
+  * d/p/replace-APITestCase-with-APIMockTestCase.patch: Cherry-pick
+    patch from upstream master to fix failing tests.
+  * d/control: Update Standards-Version to 4.1.4.
+  * d/watch, d/copyright: Use https URLs.
+  * d/control: Enable autopkgtest-pkg-python testsuite.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Thu, 14 Jun 2018 15:26:15 -0400
+
+murano-dashboard (1:5.0.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/control: Deprecating priority extra as per policy 4.0.1
+  * Running wrap-and-sort -bast
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Standards-Version is now 4.1.3.
+  * Switch to Python 3.
+  * Add ThoughtWorks Inc. and AT&T to debian/copyright.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 21 Feb 2018 13:42:31 +0100
+
+murano-dashboard (1:5.0.0-0ubuntu1.1) bionic; urgency=medium
+
+  * d/python-murano-dashboard.postinst: Ensure /var/lib/openstack-dashboard
+    exists before chown.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 14 Mar 2018 20:57:22 -0400
+
+murano-dashboard (1:5.0.0-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release for OpenStack Queens.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 28 Feb 2018 15:23:19 -0500
+
+murano-dashboard (1:5.0.0~rc2-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release candidate for OpenStack Queens.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Mon, 26 Feb 2018 17:58:56 -0500
+
+murano-dashboard (1:5.0.0~rc1-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release candidate for OpenStack Queens.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 14 Feb 2018 12:07:39 -0500
+
+murano-dashboard (1:5.0.0~b3-0ubuntu1) bionic; urgency=medium
+
+  * New upstream milestone for OpenStack Queens.
+  * d/control: Align (Build-)Depends with upstream.
+  * d/python-murano-dashboard.postinst: Align with horizon and other
+    dashboards by switching to using horizon instead of www-data.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Fri, 26 Jan 2018 12:37:18 -0500
+
+murano-dashboard (1:5.0.0~b2-0ubuntu1) bionic; urgency=medium
+
+  * New upstream milestone for OpenStack Queens.
+  * d/control: Align (Build-)Depends with upstream.
+  * d/*: wrap-and-sort -bast.
+  * d/control: Update Standards-Version to 4.1.2.
+  * d/control: Bump debhelper compat to 10.
+  * d/watch: Scope to Queens series.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 13 Dec 2017 16:42:25 -0500
+
+murano-dashboard (1:5.0.0~b1-0ubuntu1) bionic; urgency=medium
+
+  * New upstream milestone for OpenStack Queens.
+  * d/control: Align (Build-)Depends with upstream.
+  * d/p/drop-openstackdoctheme.patch: Dropped. No longer needed.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 15 Nov 2017 15:54:18 -0500
+
+murano-dashboard (1:4.0.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Bumped debhelper compat version to 10
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Ran wrap-and-sort -bast.
+  * Updated maintainer name.
+  * Standards-Version is now 4.1.1.
+  * Updated VCS fields.
+  * Copyright format using HTTPS.
+  * Fixed (build-)depends for this release.
+  * debian/rules: Removed things defined in openstack-pkg-tools.
+  * debian/rules: Fixed installing local_settings.d/_50_murano.py file.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 03 Nov 2017 17:02:44 +0100
+
+murano-dashboard (1:4.0.0-0ubuntu2) bionic; urgency=medium
+
+  * d/control: Add missing openstack-dashboard dependency to
+    python-murano-dashboard binary package (LP: #1684505).
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Fri, 27 Oct 2017 08:17:41 -0400
+
+murano-dashboard (1:4.0.0-0ubuntu1) artful; urgency=medium
+
+  * New upstream release for OpenStack Pike.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 30 Aug 2017 09:37:58 -0400
+
+murano-dashboard (1:4.0.0~rc2-0ubuntu1) artful; urgency=medium
+
+  * New upstream release candidate for OpenStack Pike.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Thu, 24 Aug 2017 12:18:03 -0400
+
+murano-dashboard (1:4.0.0~rc1-0ubuntu1) artful; urgency=medium
+
+  * d/watch: Minor update to handle version.
+  * New upstream release candidate for OpenStack Pike.
+  * d/control: Align (Build-)Depends with upstream.
+  * d/p/drop-openstackdoctheme.patch: Temporarily drop openstackdocstheme
+    sphinx extension until sphinx>=1.6.2 is available.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Fri, 18 Aug 2017 09:31:38 -0400
+
+murano-dashboard (1:3.2.0-0ubuntu1) zesty; urgency=medium
+
+  * d/watch: Point to tarballs.openstack.org 
+  * New upstream release.
+  * d/control: Align (Build-)Depends with upstream.
+
+ -- Chuck Short <zulcss@ubuntu.com>  Thu, 16 Feb 2017 09:28:44 -0500
+
+murano-dashboard (1:3.1.0-0ubuntu1) zesty; urgency=medium
+
+  * d/gbp.conf: Update gbp configuration file.
+  * d/control: Update Vcs-* links and maintainers.
+  * New upstream release
+  * d/control: Align (Build-)Depends with upstream.
+  * d/rules: Install all panels.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Tue, 31 Jan 2017 14:45:30 -0500
+
+murano-dashboard (1:3.0.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 06 Oct 2016 18:03:59 +0200
+
+murano-dashboard (1:3.0.0~rc1-2) unstable; urgency=medium
+
+  * Uploading to unstable (Closes: #837253).
+  * Fixed python-openstack-auth -> python-django-openstack-auth.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 30 Sep 2016 09:27:01 +0200
+
+murano-dashboard (1:3.0.0~rc1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Using OpenStack Gerrit as VCS URLs:
+    - Point .gitreview to packaging-deb project.
+    - Add .gitreview in extend-diff-ignore.
+  * Fix source path for copying the _50_murano.py enabling script.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 28 Sep 2016 17:22:50 +0200
+
+murano-dashboard (1:3.0.0~b2-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Removed patch applied upstream:
+    CVE-2016-4972_Inherit_custo_yaml_Loader_from_yaml.SafeLoader.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 20 Jul 2016 09:08:35 +0200
+
+murano-dashboard (1:2.0.0-5) unstable; urgency=medium
+
+  * Added missing EPOC in openstack-dashboard (build-)depends.
+  * CVE-2016-4972: RCE vulnerability in Openstack Murano using insecure YAML
+    tags. Applied upstream patch: Inherit custom yaml Loader from
+    yaml.SafeLoader (Closes: #828064).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 27 May 2016 11:56:25 +0200
+
+murano-dashboard (1:2.0.0-4) unstable; urgency=medium
+
+  [ Thomas Goirand ]
+  * rm -rf /var/cache/murano-dashboard on purge (Closes: #820287).
+
+  [ Ondřej Nový ]
+  * d/rules: Removed UPSTREAM_GIT, changed to default value
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 20 May 2016 14:57:30 +0000
+
+murano-dashboard (1:2.0.0-3) unstable; urgency=medium
+
+  * Do no copy static. (LP: #1578630)
+
+ -- Ivan Udovichenko <iudovichenko@mirantis.com>  Fri, 06 May 2016 23:25:42 +0300
+
+murano-dashboard (1:2.0.0-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Standards-Version is 3.9.8 now (no change)
+
+  [ Thomas Goirand ]
+  * Fixed missing html templates.
+  * Install missing .py files in the dashboard folder.
+
+  [ Ivan Udovichenko ]
+  * d/python-murano-dashboard.postinst:
+    - Run collectstatic after installation.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 13 Apr 2016 22:16:51 +0000
+
+murano-dashboard (1:2.0.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 07 Apr 2016 22:27:48 +0200
+
+murano-dashboard (1:2.0.0~rc2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 05 Apr 2016 22:15:28 +0200
+
+murano-dashboard (1:2.0.0~rc1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 22 Mar 2016 22:02:28 +0100
+
+murano-dashboard (1:2.0.0~b3-1) experimental; urgency=medium
+
+  [ Ivan Udovichenko ]
+  * d/python-murano-dashboard.postinst: Add METADATA_CACHE_DIR variable
+      to the configuration file.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Fixed debian/copyright ordering, years and holders.
+  * Standards-Version: 3.9.7 (no change).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 17 Mar 2016 22:59:05 +0100
+
+murano-dashboard (1:1.0.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fixed debian/copyright (bin folder removed, removing BSD-2-clause).
+  * Installs correctly _50_murano.py in the enabled folder of Horizon.
+  * Installing murano-dashboard does the offline compress now.
+  * Re-added muranodashboard/client_overrides.py.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 18 Nov 2015 11:06:05 +0100
+
+murano-dashboard (1:1.0.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable (Closes: #797900).
+  * Fixed (build-)depends version for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 23 Oct 2015 08:36:52 +0000
+
+murano-dashboard (1:1.0.0~rc1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 25 Sep 2015 00:41:07 +0200
+
+murano-dashboard (1:1.0.0~b3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 11 Sep 2015 18:20:38 +0200
+
+murano-dashboard (2015.1.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 30 Apr 2015 22:29:24 +0000
+
+murano-dashboard (2015.1~rc1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 02 Jan 2015 18:44:17 +0100
+
+murano-dashboard (2014.2-2) experimental; urgency=medium
+
+  * Added Add_horizon_plugin_configuration_file.patch, and pacakge
+    _50_murano.py within the openstack_dashboard/enable plugin folder.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 27 Oct 2014 20:59:10 +0800
+
+murano-dashboard (2014.2-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 27 Oct 2014 15:08:33 +0800
+
+murano-dashboard (2014.2~rc2-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 12 Oct 2014 23:56:04 +0800
+
+murano-dashboard (2014.2~rc1+git+5057fafb1c-1) experimental; urgency=medium
+
+  * Initial release (Closes: #763591).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 26 Sep 2014 20:44:28 +0800

@@ -1,0 +1,3 @@
+version=3
+opts="uversionmangle=s/\.0(b|rc)/~$1/" \
+ https://tarballs.openstack.org/murano-dashboard/ murano-dashboard-(7\.\d.*)\.tar\.gz
