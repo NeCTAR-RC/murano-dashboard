@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6f0ba3_c8309d2c",
+        "filename": "muranodashboard/common/designate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-06-12T03:34:31Z",
+      "side": 1,
+      "message": "project_id? or request.user.token.project.get(\u0027id\u0027) ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 32,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "11bc520c37a30e7d5afee891d0173b39458f1a3a",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    }
+  ]
+}
