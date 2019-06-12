@@ -12,44 +12,24 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from designateclient.v2 import client as designate_client
+from designateclient import client
 
-from keystoneauth1.identity import v3
+from keystoneauth1 import loading
 from keystoneauth1 import session
 
 from openstack_dashboard.api import base
 
 
-def get_auth_params_from_request(request):
-    """Extracts properties needed by designateclient from the request object.
+def designateclient(request, api_version='2'):
+    loader = loading.get_plugin_loader('token')
+    auth = loader.load_from_options(
+        auth_url=base.url_for(request, 'identity'),
+        token=request.user.token.id,
+        project_id=request.user.project_id,
+        project_domain_id=request.user.token.project.get('domain_id'))
 
-    These will be used to memoize the calls to designateclient.
-    """
-    return (
-        request.user.token.id,
-        request.user.tenant_id,
-        request.user.token.project.get('domain_id'),
-        base.url_for(request, 'dns'),
-        base.url_for(request, 'identity')
-    )
-
-
-def designateclient(request_auth_params):
-    (
-        token,
-        project_id,
-        project_domain_id,
-        designate_url,
-        auth_url
-    ) = request_auth_params
-
-    auth = v3.Token(auth_url=auth_url,
-                    token=token,
-                    project_id=project_id,
-                    project_domain_id=project_domain_id)
     sess = session.Session(auth=auth)
-    d = designate_client.Client(session=sess)
-    return d
+    return client.Client(api_version, session=sess)
 
 
 def zone_list(request):
