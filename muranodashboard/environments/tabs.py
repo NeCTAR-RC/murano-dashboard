@@ -59,18 +59,20 @@ class OverviewTab(tabs.Tab):
 
         def get_instance_and_stack(instance_data, request):
             instance_name = instance_data['name']
-            nova_openstackid = instance_data['openstackId']
+            nova_openstackid = instance_data.get('openstackId')
             stack_name = ''
             instance_result_data = {}
             stack_result_data = {}
-            instances, more = nova_api.server_list(request)
 
-            for instance in instances:
-                if nova_openstackid in instance.id:
-                    instance_result_data = {'name': instance.name,
-                                            'id': instance.id}
-                    stack_name = instance.name.split('-' + instance_name)[0]
-                    break
+            if nova_openstackid:
+                instances, more = nova_api.server_list(request)
+                for instance in instances:
+                    if nova_openstackid in instance.id:
+                        instance_result_data = {'name': instance.name,
+                                                'id': instance.id}
+                        stack_name = instance.name.split(
+                            '-' + instance_name)[0]
+                        break
             # Add link to stack details page
             if stack_name:
                 stack_result_data = find_stack(stack_name)
