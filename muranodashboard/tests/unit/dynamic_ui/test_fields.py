@@ -499,11 +499,11 @@ class TestFlavorChoiceField(unittest.TestCase):
 
         self.request = {'request': mock.Mock()}
         self.tiny_flavor = mock.Mock()
-        self.tiny_flavor.configure_mock(id='id1', name='m1.tiny')
+        self.tiny_flavor.configure_mock(id='id1', name='m3.tiny')
         self.small_flavor = mock.Mock()
-        self.small_flavor.configure_mock(id='id2', name='m1.small')
+        self.small_flavor.configure_mock(id='id2', name='m3.small')
         self.medium_flavor = mock.Mock()
-        self.medium_flavor.configure_mock(id='id3', name='m1.medium')
+        self.medium_flavor.configure_mock(id='id3', name='m3.medium')
 
         self.addCleanup(mock.patch.stopall)
 
@@ -514,7 +514,7 @@ class TestFlavorChoiceField(unittest.TestCase):
             self.tiny_flavor, self.small_flavor, self.medium_flavor
         ]
         expected_choices = [
-            ('id3', 'm1.medium'), ('id2', 'm1.small')
+            ('id3', 'm3.medium'), ('id2', 'm3.small')
         ]
         valid_requirements = [
             ('vcpus', 2), ('disk', 101), ('ram', 501)
@@ -546,9 +546,9 @@ class TestFlavorChoiceField(unittest.TestCase):
         del self.flavor_choice_field.requirements
 
         expected_choices = [
-            ('id3', 'm1.medium'),
-            ('id2', 'm1.small'),
-            ('id1', 'm1.tiny')
+            ('id3', 'm3.medium'),
+            ('id2', 'm3.small'),
+            ('id1', 'm3.tiny')
         ]
 
         self.flavor_choice_field.update(self.request)

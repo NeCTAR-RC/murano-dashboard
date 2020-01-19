@@ -383,6 +383,9 @@ class FlavorChoiceField(ChoiceField):
                                     getattr(form, 'region', None)):
             flavors = nova.novaclient(request).flavors.list()
 
+        # TODO(andybotting) Remove flavor filtering once m1/m2 go private
+        flavors = [f for f in flavors if not f.name.startswith(('m1', 'm2'))]
+
         # If no requirements are present, return all the flavors.
         if not hasattr(self, 'requirements'):
             choices = [(flavor.id, flavor.name) for flavor in flavors]
