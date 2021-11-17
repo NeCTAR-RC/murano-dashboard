@@ -69,8 +69,7 @@ def is_app(wizard):
 
 
 def _ensure_images(name, package, request, step_data=None):
-    glance_client = glance.glanceclient(
-        request, version='2')
+    glance_client = glance.glanceclient(request)
 
     base_url = packages_consts.MURANO_REPO_URL
     image_specs = package.images()
@@ -364,14 +363,15 @@ class ImportPackageWizard(horizon_views.PageTitleMixin, views.ModalFormMixin,
         # If the package is public, make the required images public
         if data['is_public']:
             try:
-                glance_client = glance.glanceclient(self.request, '1')
+                glance_client = glance.glanceclient(self.request)
             except Exception:
                 glance_client = None
 
             if glance_client:
                 for img in installed_images:
                     try:
-                        glance_client.images.update(img['id'], is_public=True)
+                        glance_client.images.update(img['id'],
+                                                    visibility='public')
                         LOG.debug(
                             'Success update for image {0}'.format(img['id']))
                     except Exception as e:
@@ -380,7 +380,7 @@ class ImportPackageWizard(horizon_views.PageTitleMixin, views.ModalFormMixin,
                         messages.error(self.request, msg)
                         LOG.exception(msg)
             elif len(installed_images):
-                msg = _("Couldn't initialise glance v1 client, "
+                msg = _("Couldn't initialise glance client, "
                         "therefore could not make the following images "
                         "public: {0}").format(' '.join(
                             [img['name'] for img in installed_images]))
