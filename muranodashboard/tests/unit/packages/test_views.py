@@ -306,7 +306,7 @@ class TestImportPackageWizard(helpers.APITestCase):
         mock_reverse.assert_called_once_with(
             'horizon:app-catalog:packages:index')
         mock_glance.glanceclient().images.update.assert_called_once_with(
-            mock.ANY, is_public=True)
+            mock.ANY, visibility='public')
         mock_storage.get_step_data.assert_any_call('upload')
         mock_storage.get_step_data().get.assert_any_call('dependencies', [])
         mock_storage.get_step_data().get.assert_any_call('images', [])
@@ -364,7 +364,7 @@ class TestImportPackageWizard(helpers.APITestCase):
 
         self.import_pkg_wizard.done({})
 
-        expected_msg = "Couldn't initialise glance v1 client, therefore "\
+        expected_msg = "Couldn't initialise glance client, therefore "\
                        "could not make the following images public: {0}"\
                        .format('foo_image_name bar_image_name')
         mock_log.warning.assert_called_once_with(expected_msg)
