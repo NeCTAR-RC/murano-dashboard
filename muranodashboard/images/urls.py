@@ -18,9 +18,9 @@ from muranodashboard.images import views
 
 
 urlpatterns = [
-    urls.url(r'^$', views.MarkedImagesView.as_view(), name='index'),
-    urls.url(r'^mark_image$', views.MarkImageView.as_view(),
-             name='mark_image'),
-    urls.url(r'^remove_metadata$', views.MarkedImagesView.as_view(),
-             name='remove_metadata'),
+    urls.re_path(r'^$', views.MarkedImagesView.as_view(), name='index'),
+    urls.re_path(r'^mark_image$', views.MarkImageView.as_view(),
+                 name='mark_image'),
+    urls.re_path(r'^remove_metadata$', views.MarkedImagesView.as_view(),
+                 name='remove_metadata'),
 ]

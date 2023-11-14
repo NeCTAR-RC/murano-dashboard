@@ -18,7 +18,7 @@ from muranodashboard.categories import views
 
 
 urlpatterns = [
-    urls.url(r'^$', views.CategoriesView.as_view(), name='index'),
-    urls.url(r'^add$', views.AddCategoryView.as_view(), name='add'),
-    urls.url(r'^delete$', views.CategoriesView.as_view(), name='delete'),
+    urls.re_path(r'^$', views.CategoriesView.as_view(), name='index'),
+    urls.re_path(r'^add$', views.AddCategoryView.as_view(), name='add'),
+    urls.re_path(r'^delete$', views.CategoriesView.as_view(), name='delete'),
 ]

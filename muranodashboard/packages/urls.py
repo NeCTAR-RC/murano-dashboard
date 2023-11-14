@@ -18,15 +18,15 @@ from muranodashboard.packages import views
 
 
 urlpatterns = [
-    urls.url(r'^$', views.PackageDefinitionsView.as_view(), name='index'),
-    urls.url(r'^upload$', views.ImportPackageWizard.as_view(
-             views.FORMS), name='upload'),
-    urls.url(r'^import_bundle$', views.ImportBundleWizard.as_view(
-             views.BUNDLE_FORMS), name='import_bundle'),
-    urls.url(r'^modify/(?P<app_id>[^/]+)?$',
-             views.ModifyPackageView.as_view(), name='modify'),
-    urls.url(r'^(?P<app_id>[^/]+)?$',
-             views.DetailView.as_view(), name='detail'),
-    urls.url(r'^download/(?P<app_name>[^/]+)/(?P<app_id>[^/]+)?$',
-             views.download_packge, name='download'),
+    urls.re_path(r'^$', views.PackageDefinitionsView.as_view(), name='index'),
+    urls.re_path(r'^upload$', views.ImportPackageWizard.as_view(
+        views.FORMS), name='upload'),
+    urls.re_path(r'^import_bundle$', views.ImportBundleWizard.as_view(
+        views.BUNDLE_FORMS), name='import_bundle'),
+    urls.re_path(r'^modify/(?P<app_id>[^/]+)?$',
+                 views.ModifyPackageView.as_view(), name='modify'),
+    urls.re_path(r'^(?P<app_id>[^/]+)?$',
+                 views.DetailView.as_view(), name='detail'),
+    urls.re_path(r'^download/(?P<app_name>[^/]+)/(?P<app_id>[^/]+)?$',
+                 views.download_packge, name='download'),
 ]
