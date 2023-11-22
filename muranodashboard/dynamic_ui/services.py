@@ -12,7 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import os
 import re
 import semantic_version
 
@@ -32,10 +31,6 @@ from muranodashboard.environments import consts
 LOG = logging.getLogger(__name__)
 
 
-if not os.path.exists(consts.CACHE_DIR):
-    os.mkdir(consts.CACHE_DIR)
-    LOG.info('Creating cache directory located at {dir}'.format(
-        dir=consts.CACHE_DIR))
 LOG.info('Using cache directory located at {dir}'.format(
     dir=consts.CACHE_DIR))
 

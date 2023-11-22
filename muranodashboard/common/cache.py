@@ -24,16 +24,21 @@ from muranodashboard.environments import consts
 LOG = logging.getLogger(__name__)
 OBJS_PATH = os.path.join(consts.CACHE_DIR, 'apps')
 
-if not os.path.exists(OBJS_PATH):
-    os.makedirs(OBJS_PATH)
-    LOG.info('Creating apps cache directory located at {dir}'.
-             format(dir=OBJS_PATH))
 
 LOG.info('Using apps cache directory located at {dir}'.
          format(dir=OBJS_PATH))
 
 
 def _get_entry_path(app_id):
+    if not os.path.exists(consts.CACHE_DIR):
+        os.mkdir(consts.CACHE_DIR)
+        LOG.info('Creating cache directory located at {dir}'.format(
+            dir=consts.CACHE_DIR))
+    if not os.path.exists(OBJS_PATH):
+        os.makedirs(OBJS_PATH)
+        LOG.info('Creating apps cache directory located at {dir}'.
+                 format(dir=OBJS_PATH))
+
     head, tail = app_id[:2], app_id[2:]
     head = os.path.join(OBJS_PATH, head)
     if not os.path.exists(head):
