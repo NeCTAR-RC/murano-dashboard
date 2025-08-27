@@ -12,7 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.conf import urls
+from django import urls
 
 from openstack_dashboard.dashboards.project.instances import views as inst_view
 
